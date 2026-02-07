@@ -1,5 +1,13 @@
 # Expense Approval System
 
+## Demo
+
+Below is a quick screenshot of the Expense Approval System interface.
+
+![Expense Approval System](Expense-Approval-System.png)
+<img width="1920" height="1020" alt="Expense-Approval-System" src="https://github.com/user-attachments/assets/f19ba46d-cfed-49a1-a416-91bc1589b3c6" />
+
+
 This project is a simple and practical Expense Approval System built using FastAPI.
 
 The idea behind it was to automate a process that is usually manual and repetitive — checking expense details, verifying receipts, and deciding whether an expense follows company policy or not. Instead of doing this by hand, the system applies rules automatically and gives a clear approval or review outcome.
