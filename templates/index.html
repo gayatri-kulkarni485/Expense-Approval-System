@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Approval System</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(120deg, #f0f4ff, #e6ecff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tr:hover {
+            background: #f1f5ff;
+        }
+
+        .approved { color: green; font-weight: bold; }
+        .pending { color: orange; font-weight: bold; }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- FORM -->
+    <div class="card">
+        <h1>Expense Approval</h1>
+
+        <form action="/submit-expense" method="post" enctype="multipart/form-data">
+            <input type="text" name="category" placeholder="Category (food, travel…)" required>
+            <input type="number" name="amount" placeholder="Amount" required>
+            <input type="file" name="receipt" required>
+            <button type="submit">Submit Expense</button>
+        </form>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="card">
+        <h2>Recent Expenses</h2>
+
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Policy</th>
+            </tr>
+
+            {% for e in expenses %}
+            <tr>
+                <td>{{ e[5] }}</td>
+                <td>{{ e[1] }}</td>
+                <td>{{ e[2] }}</td>
+
+                <td class="{% if e[3] == 'AUTO_APPROVED' %}approved{% else %}pending{% endif %}">
+                    {{ e[3] }}
+                </td>
+
+                <td>{{ e[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

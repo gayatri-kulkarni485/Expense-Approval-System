@@ -1,0 +1,6 @@
+{
+  "max_food": 1000,
+  "max_travel": 5000,
+  "max_hotel": 7000,
+  "auto_approve_limit": 2000
+}
